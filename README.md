@@ -1,1 +1,2 @@
-# code for pig game project
+# Pig Game
+'Pig' project for class.
