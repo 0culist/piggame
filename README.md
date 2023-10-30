@@ -1,2 +1,2 @@
-# 'Pig Game' project
-Pig Game project for class.
+# Pig game
+'Pig' project for class.
