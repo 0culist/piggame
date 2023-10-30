@@ -1,0 +1,60 @@
+Pig is a simple dice game first described in print by John Scarne in 1945. Players take turns to roll a single dice as many times as they wish, adding all roll results to a running total, but losing their gained score for the turn if they roll a 1.
+Each turn, a player repeatedly rolls a die until either a 1 is rolled or the player decides to "hold":
+•	If the player rolls a 1, they score nothing and it becomes the next player's turn.
+•	If the player rolls any other number, it is added to their turn total and the player's turn continues.
+•	If a player chooses to "hold", their turn total is added to their score, and it becomes the next player's turn.
+The first player to score 100 or more points wins.
+For example, the first player, Donald, begins a turn with a roll of 5. Donald could hold and score 5 points, but chooses to roll again. Donald rolls a 2, and could hold with a turn total of 7 points, but chooses to roll again. Donald rolls a 1, and must end his turn without scoring. The next player, Alexis, rolls the sequence 4-5-3-5-5, after which she chooses to hold, and adds her turn total of 22 points to her score.
+
+Task
+Using the above rules you have been asked to design and make a program for two players to compete in this game taking it in turns back and forth. 
+Players should be able to enter their names into the program and be prompted by name each time.
+You will design, implement and test your program. You must also justify and evaluate your decisions including any additional features.
+
+When you are designing and developing the solution ensure that:
+•	standard programming conventions have been followed
+•	it is efficient and robust
+•	a suitable data structure is used
+•	outputs are meaningful
+•	it is easy to use (either through terminal or GUI)
+•	the program is tested using normal, abnormal and extreme data
+
+Task breakdown
+1.	Flowchart
+2.	Pseudocode
+3.	Code 
+4.	Evaluation
+a.	how well your solution meets the requirements of the scenario
+b.	the quality and performance of your program
+c.	the choices you made about coding conventions
+d.	the changes you made during the development process.
+
+EXTENSIONS
+Once completed there are a number of possible extensions that can be tackled in any order:
+ALL EXTENSIONS REQUIRE A CONSOLE MENU SYSTEM TO OPERATE:
+1.	Let the players choose what kind of dice they play with at the start of the game (d4, d6, d8, d10, d12, d20) - Make sure to adjust winning scores accordingly
+2.	Allow for more than 2 players, when the game starts it should request how many people are playing
+3.	Add additional game modes with the following rules:
+a.	Two-Dice Pig
+i.	The game is be played with a pair of dice instead of one
+ii.	This variation is the same as Pig, except:
+iii.	Two standard dice are rolled. If neither shows a 1, their sum is added to the turn total.
+iv.	If a single 1 is rolled, the player scores nothing and the turn ends.
+v.	If two 1s are rolled, the player’s entire score is lost, and the turn ends.
+vi.	If a double is rolled, the point total is added to the turn total as with any roll but the player is obligated to roll again (possible sub-variation of the two-dice game)
+b.	Big Pig
+i.	This variation is the same as Two-Dice Pig, except:
+ii.	If two 1s are rolled, the player adds 25 to the turn total.
+iii.	If other doubles are rolled, the player adds twice the value of the dice to the turn total.
+4.	Add in a new game option 
+a.	Yacht (dice game) - Wikipedia
+
+Source - https://en.wikipedia.org/wiki/Pig_(dice_game) 
+
+//Random Number Function
+static int RandomNum(int iMin, int iMax)
+        {
+            Random rng = new Random();
+            int iRandNum = rng.Next(iMin, iMax+1);
+            return iRandNum;
+        }
