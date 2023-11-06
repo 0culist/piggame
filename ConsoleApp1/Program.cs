@@ -17,16 +17,28 @@ namespace ConsoleApp1
             // create array to store scores
             Console.Write("how many players: ");
             int userInput = 0;
-            string rawInput = Console.ReadLine(); int.TryParse(rawInput, out userInput);
+            string rawInput = Console.ReadLine();
+            int.TryParse(rawInput, out userInput);
             int numPlayers = userInput;
             int[] playerScores = new int[numPlayers];
+            int dummyVar = 0;
             
             // create array to store player names
             string[] playerNames = new string[numPlayers];
             for (int i = 0; i < playerScores.Length; i++)
             {
                 Console.Write($"player {i+1} name: ");
-                playerNames[i] = Console.ReadLine();
+                while (true)
+                {
+                    string nameInput = Console.ReadLine();
+                    if (string.IsNullOrEmpty(nameInput) == false && int.TryParse(nameInput, out dummyVar) == false)
+                    {
+                        playerNames[i] = nameInput;
+                        break;
+                    }
+                    Console.WriteLine("invalid input");
+                    Console.Write($"player {i+1} name: ");
+                }
             }
             
             // choose which dice will be used
