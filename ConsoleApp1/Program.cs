@@ -36,7 +36,7 @@ namespace ConsoleApp1
             int diceChoice = userInput - 1;
             
             // method for a player's turn
-            static int rollMethod(int score, int diceChoice)
+            static int rollMethod(int turnScore, int diceChoice)
             {
                 while (true)
                 {
@@ -52,14 +52,20 @@ namespace ConsoleApp1
                         Console.Write($"rolling [d{dice[diceChoice]}]... ");
                         currentRoll = rand.Next(1, dice[diceChoice]);
                         Console.WriteLine(currentRoll);
-                        score += currentRoll;
-                        Console.WriteLine($"your current score is: {score}");
+                        if (currentRoll == 1)
+                        {
+                            turnScore = 0;
+                            Console.WriteLine("you rolled a 1!\nturn over, you score nothing this turn");
+                            return turnScore;
+                        }
+                        turnScore += currentRoll;
+                        Console.WriteLine($"turn total: {turnScore}");
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
                     }
-                
+                    
                     // break loop
                     Console.Write("end turn?\n [1] no, roll again\n [2] yes, end turn\ninput: ");
                     string rawInput = Console.ReadLine();
@@ -67,17 +73,28 @@ namespace ConsoleApp1
                     if (userInput == 2)
                     {
                         Console.WriteLine("ending turn...");
-                        return score;
+                        return turnScore;
                     }
                     Console.WriteLine(); // newline
                 }
             }
             
             // do stuff
-            for (int i = 0; i < playerScores.Length; i++)
+            bool flagOne = false;
+            while (flagOne == false)
             {
-                Console.WriteLine($"\n-- {playerNames[i]}'s turn --");
-                playerScores[i] = rollMethod(playerScores[i], diceChoice);
+                for (int i = 0; i < playerScores.Length; i++)
+                {
+                    Console.WriteLine($"\n-- {playerNames[i]}'s turn --");
+                    playerScores[i] += rollMethod(playerScores[i], diceChoice);
+                    Console.WriteLine($"total score: {playerScores[i]}");
+                    if (playerScores[i] >= 100)
+                    {
+                        Console.WriteLine($"{playerNames[i]} has won the game!");
+                        flagOne = true;
+                        break;
+                    }
+                }
             }
             
         }
