@@ -19,11 +19,15 @@ namespace ConsoleApp1
             int userInput = 0;
             string rawInput = Console.ReadLine(); int.TryParse(rawInput, out userInput);
             int numPlayers = userInput;
-            int[] players = new int[numPlayers];
+            int[] playerScores = new int[numPlayers];
             
-            // initialise rand and dice
-            Random rand = new Random();
-            int[] dice = {4, 6, 8, 10, 12, 20};
+            // create array to store player names
+            string[] playerNames = new string[numPlayers];
+            for (int i = 0; i < playerScores.Length; i++)
+            {
+                Console.Write($"player {i+1} name: ");
+                playerNames[i] = Console.ReadLine();
+            }
             
             // choose dice which will be used for the game
             Console.Write("select...\n[1] d4\n[2] d6\n[3] d8\n[4] d10\n[5] d12\n[6] d20\ninput: ");
@@ -57,11 +61,12 @@ namespace ConsoleApp1
                     }
                 
                     // break loop
-                    Console.Write("end turn?\n [1] yes\n [0] no\ninput: ");
+                    Console.Write("end turn?\n [1] no, roll again\n [2] yes, end turn\ninput: ");
                     string rawInput = Console.ReadLine();
                     int.TryParse(rawInput, out userInput);
-                    if (userInput == 1)
+                    if (userInput == 2)
                     {
+                        Console.WriteLine("ending turn...");
                         return score;
                     }
                     Console.WriteLine(); // newline
@@ -69,10 +74,10 @@ namespace ConsoleApp1
             }
             
             // do stuff
-            for (int i = 0; i < players.Length; i++)
+            for (int i = 0; i < playerScores.Length; i++)
             {
-                Console.WriteLine($"\n-- player {i+1} --");
-                players[i] = rollMethod(players[i], diceChoice);
+                Console.WriteLine($"\n-- {playerNames[i]}'s turn --");
+                playerScores[i] = rollMethod(playerScores[i], diceChoice);
             }
             
         }
