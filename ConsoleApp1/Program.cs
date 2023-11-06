@@ -14,7 +14,7 @@ namespace ConsoleApp1
     {
         public static void Main(string[] args)
         {
-            // create 'players' array to store scores in corresponding indexes.
+            // create array to store scores
             Console.Write("how many players: ");
             int userInput = 0;
             string rawInput = Console.ReadLine(); int.TryParse(rawInput, out userInput);
@@ -29,7 +29,7 @@ namespace ConsoleApp1
                 playerNames[i] = Console.ReadLine();
             }
             
-            // choose dice which will be used for the game
+            // choose which dice will be used
             Console.Write("select...\n[1] d4\n[2] d6\n[3] d8\n[4] d10\n[5] d12\n[6] d20\ninput: ");
             rawInput = Console.ReadLine();
             int.TryParse(rawInput, out userInput);
@@ -40,18 +40,19 @@ namespace ConsoleApp1
             {
                 while (true)
                 {
-                    // define stuff
+                    // initialise vars and rand
                     int currentRoll = 0;
                     Random rand = new Random();
                     int[] dice = {4, 6, 8, 10, 12, 20};
                     int userInput = 0;
                     
-                    // roll and output
+                    // roll
                     try
                     {
                         Console.Write($"rolling [d{dice[diceChoice]}]... ");
                         currentRoll = rand.Next(1, dice[diceChoice]);
                         Console.WriteLine(currentRoll);
+                        // if roll is 1, lose turn score and end turn
                         if (currentRoll == 1)
                         {
                             turnScore = 0;
@@ -66,7 +67,7 @@ namespace ConsoleApp1
                         Console.WriteLine(e);
                     }
                     
-                    // break loop
+                    // end turn
                     Console.Write("end turn?\n [1] no, roll again\n [2] yes, end turn\ninput: ");
                     string rawInput = Console.ReadLine();
                     int.TryParse(rawInput, out userInput);
